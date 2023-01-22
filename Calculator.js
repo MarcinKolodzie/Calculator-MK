@@ -8,7 +8,7 @@ const clear = document.querySelector('.calc__button--clear')
 const dot = document.querySelector('.calc__button--dot')
 const test = document.querySelector('.calc__button--test')
 
-let partResult = ''
+let partResult = 0
 let number = 0
 let operatorSign = null
 
@@ -28,7 +28,7 @@ const multiply = (a, b) => {
 
 const makeCount = () => {
   switch (operatorSign) {
-    case '+': partResult = add(Number(number), Number(partResult))
+    case '+': partResult = add((number), Number(partResult))
       break;
     case '-': partResult = subtract(Number(number), Number(partResult))
       break;
@@ -58,7 +58,7 @@ numbers.forEach((numberFromButton) => {
   numberFromButton.addEventListener(
     'click',
     () => {
-
+      if (partResult === '') return
       if (partResult === 0) {
         partResult = numberFromButton.innerText
         render()
@@ -72,9 +72,10 @@ operators.forEach((operatorFromButton) => {
   operatorFromButton.addEventListener(
     'click',
     () => {
+      if(partResult === '') return
       makeCount()
       render()
-      number = partResult
+      number = Number(partResult)
       partResult = 0
       operatorSign = null
       loadOperator(operatorFromButton.innerText)
@@ -103,6 +104,32 @@ clearEntry.addEventListener(
   }
 )
 
+// clear.addEventListener(
+//   'click',
+//   () => {
+//     ['', 1, 2, 3, 4, 5, 6, 7, 8, 9].includes(partResult){
+//       partResult = 0
+//       render()
+//       return
+//     }
+//   }
+//   if (partResult === 0) {
+//   return
+// }
+// partResult = String(partResult).slice(0, -1)
+
+// // usuwanie bez minusa
+// if (partResult === '-' || partResult === '') {
+//   render()
+//   return
+// }
+// else {
+//   partResult = Number(partResult)
+// }
+// render()
+//   }
+// )
+
 dot.addEventListener(
   'click',
   () => {
@@ -120,7 +147,6 @@ const stopCalculator = () => {
 OFFButton.addEventListener(
   'click',
   () => stopCalculator()
-
 )
 
 test.addEventListener(
