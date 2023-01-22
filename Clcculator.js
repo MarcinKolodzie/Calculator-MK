@@ -9,7 +9,7 @@ const dot = document.querySelector('.calc__button--dot')
 
 let currenRresult = ''
 let number = 0
-let operator = ''
+let operatorSign = null
 
 const add = (a, b) => {
   console.log('a = ', a, 'b = ', b)
@@ -26,7 +26,7 @@ const multiply = (a, b) => {
 }
 
 const makeCount = () => {
-  switch (operator) {
+  switch (operatorSign) {
     case '+': currenRresult = add(Number(number), Number(currenRresult))
       break;
     case '-': currenRresult = subtract(Number(number), Number(currenRresult))
@@ -38,6 +38,10 @@ const makeCount = () => {
     default:
       return
   }
+}
+
+const loadOperator = (operatorFromButton) => {
+  operatorSign = operatorFromButton
 }
 
 const concat = (symbol) => {
@@ -53,15 +57,36 @@ numbers.forEach((numberFromButton) => {
   numberFromButton.addEventListener(
     'click',
     () => {
-      
-        if(currenRresult === 0) {
-          currenRresult = numberFromButton.innerText
-          render()
-          
-        }
-        console.log('before concat', numberFromButton.innerText)
-        concat(numberFromButton.innerText)
-        console.log('after', currenRresult)
+
+      if (currenRresult === 0) {
+        currenRresult = numberFromButton.innerText
+        render()
+        return
+      }
+      concat(numberFromButton.innerText)
     }
   )
 })
+operators.forEach((operatorFromButton) => {
+  operatorFromButton.addEventListener(
+    'click',
+    () => {
+      makeCount()
+      render()
+      number = currenRresult
+      currenRresult = 0
+      operatorSign = null
+      loadOperator(operatorFromButton.innerText)
+    }
+  )
+})
+
+equal.addEventListener(
+  'click',
+  () => {
+    makeCount()
+    render()
+    number = 0
+    operatorSign = '='
+  }
+)
