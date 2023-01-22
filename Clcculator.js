@@ -1,5 +1,5 @@
 const numbers = document.querySelectorAll('.calc__button--number')
-const outputResult = document.querySelector('.calc__result')
+const outputResult = document.querySelector('.calc__resultWindow')
 const operators = document.querySelectorAll('.calc__button--operatorMark ')
 const equal = document.querySelector('.calc__button--equal')
 const OFFButton = document.querySelector('.calc__button--OFF')
@@ -9,9 +9,10 @@ const dot = document.querySelector('.calc__button--dot')
 
 let currenRresult = ''
 let number = 0
-let operator = null
+let operator = ''
 
 const add = (a, b) => {
+  console.log('a = ', a, 'b = ', b)
   return a + b
 }
 const subtract = (a, b) => {
@@ -38,3 +39,29 @@ const makeCount = () => {
       return
   }
 }
+
+const concat = (symbol) => {
+  currenRresult = currenRresult.toString() + symbol.toString()
+  render()
+}
+
+const render = () => {
+  outputResult.innerText = currenRresult
+}
+
+numbers.forEach((numberFromButton) => {
+  numberFromButton.addEventListener(
+    'click',
+    () => {
+      
+        if(currenRresult === 0) {
+          currenRresult = numberFromButton.innerText
+          render()
+          
+        }
+        console.log('before concat', numberFromButton.innerText)
+        concat(numberFromButton.innerText)
+        console.log('after', currenRresult)
+    }
+  )
+})
