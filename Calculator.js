@@ -90,3 +90,13 @@ equal.addEventListener(
     operatorSign = '='
   }
 )
+
+clearEntry.addEventListener(
+  'click',
+  () => {
+    corr = 0
+    number = 0
+    operator = null
+    render()
+  }
+)
