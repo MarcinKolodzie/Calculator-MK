@@ -51,6 +51,11 @@ const concat = (symbol) => {
 
 const render = () => {
   outputResult.innerText = currenRresult
+  console.log(
+    "currenRresult = ", currenRresult,
+    "number = ", number,
+    "operatorSign = ", operatorSign
+  )
 }
 
 numbers.forEach((numberFromButton) => {
@@ -85,18 +90,39 @@ equal.addEventListener(
   'click',
   () => {
     makeCount()
+    operatorSign = '='
     render()
     number = 0
-    operatorSign = '='
+    operatorSign = null
   }
 )
 
 clearEntry.addEventListener(
   'click',
   () => {
-    corr = 0
+    currenRresult = 0
     number = 0
-    operator = null
+    operatorSign = null
     render()
   }
+)
+
+dot.addEventListener(
+  'click',
+  () => {
+    concat('.')
+  }
+)
+
+const stopCalculator = () => {
+  currenRresult = ''
+  number = 0
+  operatorSign = null
+  render()
+}
+
+OFFButton.addEventListener(
+  'click',
+  () => stopCalculator()
+
 )
