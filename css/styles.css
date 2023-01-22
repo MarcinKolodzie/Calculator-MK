@@ -1,0 +1,19 @@
+.calc {
+  width: 210px;
+  box-sizing: border-box;
+  display: flex;
+  position: center;
+  flex-wrap: wrap;
+}
+
+.calc__resultWindow {
+  border: 1px solid black;
+  width: 205px;
+  min-height: 50px;
+}
+
+.calc__button {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+}
