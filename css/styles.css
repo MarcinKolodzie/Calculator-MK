@@ -22,3 +22,8 @@
 .double-width{
   width: 101.5px;
 }
+
+.calc__button--test{
+  width: 205px;
+  height: 50px;
+}

@@ -6,8 +6,9 @@ const OFFButton = document.querySelector('.calc__button--OFF')
 const clearEntry = document.querySelector('.calc__button--clearEntry')
 const clear = document.querySelector('.calc__button--clear')
 const dot = document.querySelector('.calc__button--dot')
+const test = document.querySelector('.calc__button--test')
 
-let currenRresult = ''
+let partResult = ''
 let number = 0
 let operatorSign = null
 
@@ -27,13 +28,13 @@ const multiply = (a, b) => {
 
 const makeCount = () => {
   switch (operatorSign) {
-    case '+': currenRresult = add(Number(number), Number(currenRresult))
+    case '+': partResult = add(Number(number), Number(partResult))
       break;
-    case '-': currenRresult = subtract(Number(number), Number(currenRresult))
+    case '-': partResult = subtract(Number(number), Number(partResult))
       break;
-    case '/': currenRresult = divide(Number(number), Number(currenRresult))
+    case '/': partResult = divide(Number(number), Number(partResult))
       break;
-    case '*': currenRresult = multiply(Number(number), Number(currenRresult))
+    case '*': partResult = multiply(Number(number), Number(partResult))
       break;
     default:
       return
@@ -45,17 +46,12 @@ const loadOperator = (operatorFromButton) => {
 }
 
 const concat = (symbol) => {
-  currenRresult = currenRresult.toString() + symbol.toString()
+  partResult = partResult.toString() + symbol.toString()
   render()
 }
 
 const render = () => {
-  outputResult.innerText = currenRresult
-  console.log(
-    "currenRresult = ", currenRresult,
-    "number = ", number,
-    "operatorSign = ", operatorSign
-  )
+  outputResult.innerText = partResult
 }
 
 numbers.forEach((numberFromButton) => {
@@ -63,8 +59,8 @@ numbers.forEach((numberFromButton) => {
     'click',
     () => {
 
-      if (currenRresult === 0) {
-        currenRresult = numberFromButton.innerText
+      if (partResult === 0) {
+        partResult = numberFromButton.innerText
         render()
         return
       }
@@ -78,8 +74,8 @@ operators.forEach((operatorFromButton) => {
     () => {
       makeCount()
       render()
-      number = currenRresult
-      currenRresult = 0
+      number = partResult
+      partResult = 0
       operatorSign = null
       loadOperator(operatorFromButton.innerText)
     }
@@ -100,7 +96,7 @@ equal.addEventListener(
 clearEntry.addEventListener(
   'click',
   () => {
-    currenRresult = 0
+    partResult = 0
     number = 0
     operatorSign = null
     render()
@@ -115,7 +111,7 @@ dot.addEventListener(
 )
 
 const stopCalculator = () => {
-  currenRresult = ''
+  partResult = ''
   number = 0
   operatorSign = null
   render()
@@ -126,3 +122,11 @@ OFFButton.addEventListener(
   () => stopCalculator()
 
 )
+
+test.addEventListener(
+  'click',
+  () => console.log(
+    "partResult = ", partResult,
+    "number = ", number,
+    "operatorSign = ", operatorSign
+  ))
