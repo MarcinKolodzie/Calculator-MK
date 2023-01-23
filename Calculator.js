@@ -8,7 +8,7 @@ const clear = document.querySelector('.calc__button--clear')
 const dot = document.querySelector('.calc__button--dot')
 const test = document.querySelector('.calc__button--test')
 
-let partResult = 0
+let partResultNS = 0
 let number = 0
 let operatorSign = null
 
@@ -28,13 +28,13 @@ const multiply = (a, b) => {
 
 const makeCount = () => {
   switch (operatorSign) {
-    case '+': partResult = add((number), Number(partResult))
+    case '+': partResultNS = add((number), Number(partResultNS))
       break;
-    case '-': partResult = subtract(Number(number), Number(partResult))
+    case '-': partResultNS = subtract(Number(number), Number(partResultNS))
       break;
-    case '/': partResult = divide(Number(number), Number(partResult))
+    case '/': partResultNS = divide(Number(number), Number(partResultNS))
       break;
-    case '*': partResult = multiply(Number(number), Number(partResult))
+    case '*': partResultNS = multiply(Number(number), Number(partResultNS))
       break;
     default:
       return
@@ -46,21 +46,21 @@ const loadOperator = (operatorFromButton) => {
 }
 
 const concat = (symbol) => {
-  partResult = partResult.toString() + symbol.toString()
+  partResultNS = partResultNS.toString() + symbol.toString()
   render()
 }
 
 const render = () => {
-  outputResult.innerText = partResult
+  outputResult.innerText = partResultNS
 }
 
 numbers.forEach((numberFromButton) => {
   numberFromButton.addEventListener(
     'click',
     () => {
-      if (partResult === '') return
-      if (partResult === 0) {
-        partResult = numberFromButton.innerText
+      if (partResultNS === '') return
+      if (partResultNS === 0) {
+        partResultNS = numberFromButton.innerText
         render()
         return
       }
@@ -72,11 +72,11 @@ operators.forEach((operatorFromButton) => {
   operatorFromButton.addEventListener(
     'click',
     () => {
-      if(partResult === '') return
+      if(partResultNS === '') return
       makeCount()
       render()
-      number = Number(partResult)
-      partResult = 0
+      number = Number(partResultNS)
+      partResultNS = 0
       operatorSign = null
       loadOperator(operatorFromButton.innerText)
     }
@@ -97,48 +97,45 @@ equal.addEventListener(
 clearEntry.addEventListener(
   'click',
   () => {
-    partResult = 0
+    partResultNS = 0
     number = 0
     operatorSign = null
     render()
   }
 )
 
-// clear.addEventListener(
-//   'click',
-//   () => {
-//     ['', 1, 2, 3, 4, 5, 6, 7, 8, 9].includes(partResult){
-//       partResult = 0
-//       render()
-//       return
-//     }
-//   }
-//   if (partResult === 0) {
-//   return
-// }
-// partResult = String(partResult).slice(0, -1)
+clear.addEventListener(
+  'click',
+  () => {
+    if (partResultNS === '' || partResultNS === '1' || partResultNS === '2' || partResultNS === '3' || partResultNS === '4' || partResultNS === '5' || partResultNS === '6' || partResultNS === '7' || partResultNS === '8' || partResultNS === '9' || partResultNS === '0') {
+      partResultNS = 0
+      render()
+      return
+    }
+    if (partResultNS === 0) {
+      return
+    }
+    partResultNS = String(partResultNS).slice(0, -1)
 
-// // usuwanie bez minusa
-// if (partResult === '-' || partResult === '') {
-//   render()
-//   return
-// }
-// else {
-//   partResult = Number(partResult)
-// }
-// render()
-//   }
-// )
+    if (partResultNS === '') {
+      partResultNS = 0
+      render()
+      return
+    }
+    render()
+  }
+)
 
 dot.addEventListener(
   'click',
   () => {
+
     concat('.')
   }
 )
 
 const stopCalculator = () => {
-  partResult = ''
+  partResultNS = ''
   number = 0
   operatorSign = null
   render()
@@ -152,7 +149,7 @@ OFFButton.addEventListener(
 test.addEventListener(
   'click',
   () => console.log(
-    "partResult = ", partResult,
+    "partResultNS = ", partResultNS,
     "number = ", number,
     "operatorSign = ", operatorSign
   ))
