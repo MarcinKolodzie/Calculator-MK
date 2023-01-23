@@ -9,7 +9,7 @@
   const clearEntry = document.querySelector('.calc__button--clearEntry')
   const clear = document.querySelector('.calc__button--clear')
   const dot = document.querySelector('.calc__button--dot')
-  // const test = document.querySelector('.calc__button--test')
+  const test = document.querySelector('.calc__button--test')
   // html functions - end
 
   // start state - start
@@ -21,7 +21,6 @@
 
   // math functions - start
   const add = (a, b) => {
-    console.log('a = ', a, 'b = ', b)
     return a + b
   }
   const subtract = (a, b) => {
@@ -99,11 +98,19 @@
   equal.addEventListener(
     'click',
     () => {
-      makeCount()
-      operatorSign = '='
-      render()
-      number = 0
-      operatorSign = null
+      if (operatorSign === '/' && (partResultNS === '0' || partResultNS === 0)) {
+        partResultNS = 'ERROR don\'t divide by ZERO'
+        render()
+        partResultNS = ''
+        return
+      }
+      else {
+        makeCount()
+        operatorSign = '='
+        render()
+        number = 0
+        operatorSign = null
+      }
     }
   )
 
@@ -164,12 +171,12 @@
   // button operations - end
 
   // test button - start
-  // test.addEventListener(
-  //   'click',
-  //   () => console.log(
-  //     "partResultNS = ", partResultNS,
-  //     "number = ", number,
-  //     "operatorSign = ", operatorSign
-  //   ))
+  test.addEventListener(
+    'click',
+    () => console.log(
+      "partResultNS = ", partResultNS,
+      "number = ", number,
+      "operatorSign = ", operatorSign
+    ))
   // test button - end
 })()
