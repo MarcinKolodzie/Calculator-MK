@@ -1,4 +1,6 @@
 (function () {
+
+  // html functions - start
   const numbers = document.querySelectorAll('.calc__button--number')
   const outputResult = document.querySelector('.calc__resultWindow')
   const operators = document.querySelectorAll('.calc__button--operatorMark ')
@@ -8,11 +10,16 @@
   const clear = document.querySelector('.calc__button--clear')
   const dot = document.querySelector('.calc__button--dot')
   // const test = document.querySelector('.calc__button--test')
+  // html functions - end
 
+  // start state - start
   let partResultNS = 0
   let number = 0
   let operatorSign = null
+  // start state - end
 
+
+  // math functions - start
   const add = (a, b) => {
     console.log('a = ', a, 'b = ', b)
     return a + b
@@ -41,7 +48,9 @@
         return
     }
   }
+  // math functions - end
 
+  // rendering functions -start
   const loadOperator = (operatorFromButton) => {
     operatorSign = operatorFromButton
   }
@@ -54,7 +63,10 @@
   const render = () => {
     outputResult.innerText = partResultNS
   }
+  // rendering functions -end
 
+
+  // button operations - start
   numbers.forEach((numberFromButton) => {
     numberFromButton.addEventListener(
       'click',
@@ -149,7 +161,9 @@
     'click',
     () => stopCalculator()
   )
+  // button operations - end
 
+  // test button - start
   // test.addEventListener(
   //   'click',
   //   () => console.log(
@@ -157,4 +171,5 @@
   //     "number = ", number,
   //     "operatorSign = ", operatorSign
   //   ))
+  // test button - end
 })()
