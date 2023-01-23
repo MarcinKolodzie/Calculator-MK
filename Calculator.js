@@ -72,7 +72,7 @@ operators.forEach((operatorFromButton) => {
   operatorFromButton.addEventListener(
     'click',
     () => {
-      if(partResultNS === '') return
+      if (partResultNS === '') return
       makeCount()
       render()
       number = Number(partResultNS)
@@ -129,7 +129,7 @@ clear.addEventListener(
 dot.addEventListener(
   'click',
   () => {
-
+    if (partResultNS.includes('.')) return
     concat('.')
   }
 )
