@@ -129,7 +129,10 @@ clear.addEventListener(
 dot.addEventListener(
   'click',
   () => {
-    if (partResultNS.includes('.')) return
+    partResultNS = partResultNS.toString()
+    if (partResultNS === '') return
+    else {if (partResultNS.includes('.')) return}
+    
     concat('.')
   }
 )
