@@ -1,4 +1,4 @@
-// (function () {
+(function () {
 
   // html functions - start
   const numbers = document.querySelectorAll('.calc__button--number')
@@ -9,7 +9,7 @@
   const clearEntry = document.querySelector('.calc__button--clearEntry')
   const clear = document.querySelector('.calc__button--clear')
   const dot = document.querySelector('.calc__button--dot')
-  const test = document.querySelector('.calc__button--test')
+  // const test = document.querySelector('.calc__button--test')
   // html functions - end
 
   // start state - start
@@ -35,13 +35,13 @@
 
   const makeCount = () => {
     switch (operatorSign) {
-      case '+': partResultNS = add((number), Number(partResultNS))
+      case '+': (partResultNS = add((number), Number(partResultNS))).toPrecision(9)
         break;
-      case '-': partResultNS = subtract(Number(number), Number(partResultNS))
+      case '-': (partResultNS = subtract(Number(number), Number(partResultNS))).toPrecision(9)
         break;
-      case '/': partResultNS = divide(Number(number), Number(partResultNS))
+      case '/': partResultNS = (divide(Number(number), Number(partResultNS))).toPrecision(9)
         break;
-      case '*': partResultNS = multiply(Number(number), Number(partResultNS))
+      case '*': partResultNS = (multiply(Number(number), Number(partResultNS))).toPrecision(9)
         break;
       default:
         return
@@ -171,12 +171,12 @@
   // button operations - end
 
   // test button - start
-  test.addEventListener(
-    'click',
-    () => console.log(
-      "partResultNS = ", partResultNS,
-      "number = ", number,
-      "operatorSign = ", operatorSign
-    ))
+  // test.addEventListener(
+  //   'click',
+  //   () => console.log(
+  //     "partResultNS = ", partResultNS,
+  //     "number = ", number,
+  //     "operatorSign = ", operatorSign
+  //   ))
   // test button - end
-// })()
+})()
