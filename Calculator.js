@@ -1,4 +1,4 @@
-(function () {
+// (function () {
 
   // html functions - start
   const numbers = document.querySelectorAll('.calc__button--number')
@@ -9,11 +9,11 @@
   const clearEntry = document.querySelector('.calc__button--clearEntry')
   const clear = document.querySelector('.calc__button--clear')
   const dot = document.querySelector('.calc__button--dot')
-  // const test = document.querySelector('.calc__button--test')
+  const test = document.querySelector('.calc__button--test')
   // html functions - end
 
   // start state - start
-  let partResultNS = 0
+  let partResultNS = ''
   let number = 0
   let operatorSign = null
   // start state - end
@@ -71,7 +71,7 @@
       'click',
       () => {
         if (partResultNS === '') return
-        if (partResultNS === 0) {
+        if (partResultNS === 0 || partResultNS === '0') {
           partResultNS = numberFromButton.innerText
           render()
           return
@@ -171,12 +171,12 @@
   // button operations - end
 
   // test button - start
-  // test.addEventListener(
-  //   'click',
-  //   () => console.log(
-  //     "partResultNS = ", partResultNS,
-  //     "number = ", number,
-  //     "operatorSign = ", operatorSign
-  //   ))
+  test.addEventListener(
+    'click',
+    () => console.log(
+      "partResultNS = ", partResultNS,
+      "number = ", number,
+      "operatorSign = ", operatorSign
+    ))
   // test button - end
-})()
+// })()
