@@ -9,7 +9,7 @@
   const clearEntry = document.querySelector('.calc__button--clearEntry')
   const clear = document.querySelector('.calc__button--clear')
   const dot = document.querySelector('.calc__button--dot')
-  const test = document.querySelector('.calc__button--test')
+  // const test = document.querySelector('.calc__button--test')
   // html functions - end
 
   // start state - start
@@ -171,12 +171,12 @@
   // button operations - end
 
   // test button - start
-  test.addEventListener(
-    'click',
-    () => console.log(
-      "partResultNS = ", partResultNS,
-      "number = ", number,
-      "operatorSign = ", operatorSign
-    ))
+  // test.addEventListener(
+  //   'click',
+  //   () => console.log(
+  //     "partResultNS = ", partResultNS,
+  //     "number = ", number,
+  //     "operatorSign = ", operatorSign
+  //   ))
   // test button - end
 })()
